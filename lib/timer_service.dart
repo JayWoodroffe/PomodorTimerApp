@@ -58,8 +58,7 @@ class TimerService extends ChangeNotifier {
     //focus round -> break round of 300 seconds
     if (currentState == "focus" && round != 3) {
       currentState = "break";
-      currentDuration = 5;
-      selectedTime = 5;
+      currentDuration = 300;
       round++;
       goal++;
     }
