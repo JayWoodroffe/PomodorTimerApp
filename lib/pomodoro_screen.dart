@@ -1,15 +1,20 @@
 import "package:flutter/material.dart";
+import "package:pomodoroapp/timer_service.dart";
 import "package:pomodoroapp/utils.dart";
 import "package:pomodoroapp/widgets/progress_widget.dart";
 import "package:pomodoroapp/widgets/time_controller.dart";
 import "package:pomodoroapp/widgets/time_options.dart";
 import "package:pomodoroapp/widgets/timer_card.dart";
+import "package:provider/provider.dart";
+import 'package:audioplayers/audioplayers.dart';
 
 class PomodoroScreen extends StatelessWidget {
   const PomodoroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -22,7 +27,8 @@ class PomodoroScreen extends StatelessWidget {
         actions: [
           IconButton(
             icon: Icon(Icons.refresh, color: Colors.red.shade900),
-            onPressed: () {},
+            onPressed: () =>
+                Provider.of<TimerService>(context, listen: false).reset(),
             iconSize: 40,
           )
         ],
@@ -37,11 +43,12 @@ class PomodoroScreen extends StatelessWidget {
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10),
               decoration: BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(15),
                 border: Border.all(width: 3, color: Colors.red.shade900),
               ),
               child: Text(
-                'focus',
+                provider.currentState,
                 style: textStyle(35, Colors.black, FontWeight.w100),
               ),
             ),

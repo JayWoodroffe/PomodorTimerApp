@@ -1,11 +1,15 @@
 import "package:flutter/material.dart";
+import "package:pomodoroapp/timer_service.dart";
 import "package:pomodoroapp/utils.dart";
+import "package:provider/provider.dart";
 
 class ProgressWidget extends StatelessWidget {
   const ProgressWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<TimerService>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -13,7 +17,7 @@ class ProgressWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "0/4",
+              "${provider.round}/4",
               style: textStyle(20, Colors.grey[400], FontWeight.bold),
             ),
             Text(
@@ -26,7 +30,7 @@ class ProgressWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "0/12",
+              "${provider.goal}/12",
               style: textStyle(20, Colors.grey[400], FontWeight.bold),
             ),
             Text(
