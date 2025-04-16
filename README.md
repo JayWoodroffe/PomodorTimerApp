@@ -150,4 +150,3 @@ flutter test
 
 ---
 
-## 📄 License
